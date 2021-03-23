@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    </head>
+    <body style="padding:10px">
+        <h1>Slave sensors</h1>
+
+        <table id="books" class="table">
+            <tr>
+                <td style="width: 6%">
+                    <a href="/sensors" title="Add">
+                        <img src="/static/img/plus.svg">
+                    </a>
+                </td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>ID 485</td>
+                <td>Output port</td>
+                <td>Activation value</td>
+                <td>Target value</td>
+            </tr>
+                {% for sensor in sensors %}
+                    <tr>
+                        <td>
+                            <a href="/sensors/{{ sensor['_id'] }}" title="Edit" style="margin-right:10px"><img src="/static/img/edit-2.svg"></a>
+                            <a href="/delete/{{ sensor['_id'] }}" title="Remove"><img src="/static/img/trash-2.svg"></a>
+                        </td>
+                        <td>{{ sensor['_id'] }}</td>
+                        <td>{{ sensor['nome'] }}</td>
+                        <td>{{ sensor['id_485'] }}</td>
+                        <td>{{ sensor['aciona_saida'] }}</td>
+                        <td>{{ sensor['valor_acionamento'] }}</td>
+                        <td>{{ sensor['valor_ideal'] }}</td>
+                    </tr>
+                {% endfor %}
+        </table>
+    </body>
+</html>

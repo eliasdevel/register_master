@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    </head>
+    <body style="padding:10px">
+        <h1>Sensor registration</h1>
+        
+        <form action="/sensors{{ '/' if sensor != None }}{{ sensor['_id'] }}" method="post" style="width:20%">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="nome" name="nome" class="form-control" value="{{ sensor['nome'] }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="id_485">ID 485:</label>
+                <input type="text" id="id_485" name="id_485" class="form-control" value="{{ sensor['id_485'] }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="id_485">Output port:</label>
+                <input type="number" id="aciona_saida" name="aciona_saida" class="form-control" value="{{ sensor['aciona_saida'] }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="id_485">Activation value:</label>
+                <input type="number" id="valor_acionamento" name="valor_acionamento" class="form-control" value="{{ sensor['valor_acionamento'] }}" />
+            </div>
+
+            <div class="form-group">
+                <label for="id_485">Target value:</label>
+                <input type="number" id="valor_ideal" name="valor_ideal" class="form-control" value="{{ sensor['valor_ideal'] }}" />
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:25%">Save</button>
+        </form>
+    </body>
+</html>
