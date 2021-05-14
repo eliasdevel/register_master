@@ -43,7 +43,9 @@ def request_to_sensor():
             'id_485': request.form.get('id_485'),
             'aciona_saida': request.form.get('aciona_saida'),
             'valor_acionamento': request.form.get('valor_acionamento'),
-            'valor_ideal': request.form.get('valor_ideal')}
+            'valor_ideal': request.form.get('valor_ideal'),
+            'valor_atual': request.form.get('valor_atual')
+            }
 
 
 if __name__ == '__main__':

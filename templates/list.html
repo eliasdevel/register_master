@@ -19,6 +19,7 @@
                 <td>Output port</td>
                 <td>Activation value</td>
                 <td>Target value</td>
+                <td>Valor atual</td>
             </tr>
                 {% for sensor in sensors %}
                     <tr>
@@ -32,6 +33,7 @@
                         <td>{{ sensor['aciona_saida'] }}</td>
                         <td>{{ sensor['valor_acionamento'] }}</td>
                         <td>{{ sensor['valor_ideal'] }}</td>
+                        <td>{{ sensor['valor_atual'] }}</td>
                     </tr>
                 {% endfor %}
         </table>
