@@ -27,7 +27,7 @@ def update(_id):
     if request.method == 'GET':
         return render_template('form.html', sensor=db.sensors.find_one({"_id": ObjectId(_id)}))
     elif request.method == 'POST':
-        db.sensors.update_one({"_id": ObjectId(_id)}, {'$set': request_to_sensor()})
+        db.sensors.update({"_id": ObjectId(_id)}, {'$set': request_to_sensor()})
         return redirect('/')
 
 
