@@ -2,6 +2,11 @@ from flask import Flask, render_template, request, redirect, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
+app = Flask(__name__)
+
+client = MongoClient('localhost', 27017)
+db = client.sensors_database
+
 @app.route('/')
 def index():
     return render_template('list.html')
