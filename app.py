@@ -1,16 +1,21 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
-app = Flask(__name__)
-
-client = MongoClient('localhost', 27017)
-db = client.sensors_database
-
-
 @app.route('/')
 def index():
-    return render_template('list.html', sensors=db.sensors.find())
+    return render_template('list.html')
+
+
+@app.route('/data')
+def values():
+    data_list = []
+
+    for entity in db.sensors.find():
+        entity["_id"] = str(entity["_id"])
+        data_list.append(entity)
+
+    return jsonify(data_list)
 
 
 @app.route('/sensors', methods=['GET', 'POST'])

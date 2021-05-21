@@ -7,35 +7,54 @@
         <h1>Slave sensors</h1>
 
         <table id="books" class="table">
-            <tr>
-                <td style="width: 6%">
-                    <a href="/sensors" title="Add">
-                        <img src="/static/img/plus.svg">
-                    </a>
-                </td>
-                <td>ID</td>
-                <td>Name</td>
-                <td>ID 485</td>
-                <td>Output port</td>
-                <td>Activation value</td>
-                <td>Target value</td>
-                <td>Current value</td>
-            </tr>
-                {% for sensor in sensors %}
-                    <tr>
-                        <td>
-                            <a href="/sensors/{{ sensor['_id'] }}" title="Edit" style="margin-right:10px"><img src="/static/img/edit-2.svg"></a>
-                            <a href="/delete/{{ sensor['_id'] }}" title="Remove"><img src="/static/img/trash-2.svg"></a>
-                        </td>
-                        <td>{{ sensor['_id'] }}</td>
-                        <td>{{ sensor['nome'] }}</td>
-                        <td>{{ sensor['id_485'] }}</td>
-                        <td>{{ sensor['aciona_saida'] }}</td>
-                        <td>{{ sensor['valor_acionamento'] }}</td>
-                        <td>{{ sensor['valor_ideal'] }}</td>
-                        <td>{{ sensor['valor_atual'] }}</td>
-                    </tr>
-                {% endfor %}
+            <thead>
+                <tr>
+                    <td style="width: 6%">
+                        <a href="/sensors" title="Add">
+                            <img src="/static/img/plus.svg">
+                        </a>
+                    </td>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>ID 485</td>
+                    <td>Output port</td>
+                    <td>Activation value</td>
+                    <td>Target value</td>
+                    <td>Current value</td>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
+
+        <script>
+            function load_data() {
+                fetch('/data')
+                .then(function(response) {
+                  return response.json();
+                })
+                .then(data => {
+                    document.querySelector("tbody").innerHTML =
+                        data.map(sensor =>
+                            `<tr>
+                                 <td>
+                                     <a href="/sensors/${sensor['_id']}" title="Edit" style="margin-right:10px"><img src="/static/img/edit-2.svg"></a>
+                                     <a href="/delete/${sensor['_id']}" title="Remove"><img src="/static/img/trash-2.svg"></a>
+                                 </td>
+                                 <td>${sensor['_id']}</td>
+                                 <td>${sensor['nome']}</td>
+                                 <td>${sensor['id_485']}</td>
+                                 <td>${sensor['aciona_saida']}</td>
+                                 <td>${sensor['valor_acionamento']}</td>
+                                 <td>${sensor['valor_ideal']}</td>
+                                 <td>${sensor['valor_atual']}</td>
+                             </tr>`).join(" ")
+                })
+            }
+
+            load_data()
+            setInterval(load_data, 10000)
+        </script>
+        
     </body>
 </html>
