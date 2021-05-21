@@ -21,6 +21,7 @@
                     <td>Activation value</td>
                     <td>Target value</td>
                     <td>Current value</td>
+                    <td>Output State</td>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +49,7 @@
                                  <td>${sensor['valor_acionamento']}</td>
                                  <td>${sensor['valor_ideal']}</td>
                                  <td>${sensor['valor_atual']}</td>
+                                 <td>${sensor['valor_saida']}</td>
                              </tr>`).join(" ")
                 })
             }
